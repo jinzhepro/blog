@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://jinzhepro.cc</id>
+    <title>JinzhePro</title>
+    <updated>2024-10-15T09:02:49.047Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://jinzhepro.cc"/>
+    <link rel="self" href="https://jinzhepro.cc/atom.xml"/>
+    <logo>https://jinzhepro.cc/images/avatar.png</logo>
+    <icon>https://jinzhepro.cc/favicon.ico</icon>
+    <rights>All rights reserved 2024, JinzhePro</rights>
+    <entry>
+        <title type="html"><![CDATA[123123]]></title>
+        <id>https://jinzhepro.cc/4RQI7iY4p7/</id>
+        <link href="https://jinzhepro.cc/4RQI7iY4p7/">
+        </link>
+        <updated>2024-10-15T08:57:25.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>123123123</p>
+]]></content>
+    </entry>
+</feed>
