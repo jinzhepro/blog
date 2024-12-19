@@ -1,6 +1,9 @@
 {
-    "title":"Blog Title",
-    "subTitle":"Blog description",
+    "title":"JinzhePro",
+    "subTitle":"再努力一次！",
     "avatarUrl":"https://github.githubassets.com/favicons/favicon.svg",
-    "GMEEK_VERSION":"last"
+    "GMEEK_VERSION":"last",
+    "startSite": "12/19/2024",
+    "needComment": 1
+    "homeUrl": "https://jinzhepro.github.io"
 }
