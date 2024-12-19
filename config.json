@@ -5,6 +5,11 @@
     "GMEEK_VERSION":"last",
     "startSite": "12/19/2024",
     "needComment": 1,
+    "i18n":"CN",
+    "email":"jinzhepro@qq.com",
+    "nightTheme":"dark_colorblind",
+    "onePageListNum":15,
+    "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
     "homeUrl": "https://jinzhepro.github.io",
     "singlePage":["about", "link"]
 }
