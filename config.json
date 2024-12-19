@@ -12,5 +12,5 @@
     "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
     "homeUrl": "https://jinzhepro.github.io",
     "singlePage":["about", "link"],
-    "script":"<script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/assets/GmeekVercount.js'></script><script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/assets/GmeekBSZ.js'></script><script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/assets/GmeekTOC.js'></script>",
+    "script":"<script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/assets/GmeekVercount.js'></script><script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/assets/GmeekBSZ.js'></script><script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/assets/GmeekTOC.js'></script>"
 }
