@@ -12,5 +12,5 @@
     "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
     "homeUrl": "https://jinzhepro.github.io",
     "singlePage":["about", "link"],
-    "allHead":"<script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/assets/GmeekVercount.js'></script>",
+    "allHead":"<script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/assets/GmeekVercount.js'></script>"
 }
