@@ -12,7 +12,7 @@
     "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
     "homeUrl": "https://jinzhepro.github.io",
     "singlePage":["about", "link"],
-    "allHead":"<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>",
+    "allHead":"<script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/assets/GmeekVercount.js'></script>",
     "primerCSS":"<link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />",
     "script":"<script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/assets/GmeekTOC.js'></script>"
 }
