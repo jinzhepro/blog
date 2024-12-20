@@ -1,7 +1,7 @@
 {
   "title":"JinzhePro",
   "subTitle":"再努力一次！",
-  "avatarUrl":"../logo.png",
+  "avatarUrl":"https://jinzhepro.github.io/logo.png",
   "GMEEK_VERSION":"last",
   "startSite": "12/19/2024",
   "needComment": 1,
@@ -13,7 +13,7 @@
   "showPostSource": 1,
   "homeUrl": "https://jinzhepro.github.io",
   "singlePage":["about"],
-  "allHead":"<script src='https://jinzhepro.github.io/GmeekVercount.js'></script><script src='https://jinzhepro.github.io/GmeekTOC.js'></script>",
+  "allHead":"<script src='https://jinzhepro.github.io/plugins/GmeekVercount.js'></script><script src='https://jinzhepro.github.io/plugins/GmeekTOC.js'></script>",
   "primerCSS":"<link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />",
-  "script":"<script src='https://raw.githubusercontent.com/jinzhepro/jinzhepro.github.io/refs/heads/main/static/GmeekTOC.js'></script>"
+  "script":"<script src='https://jinzhepro.github.io/plugins/lightbox.js'></script>"
 }
