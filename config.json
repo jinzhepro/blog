@@ -1,7 +1,7 @@
 {
   "title":"JinzhePro",
   "subTitle":"再努力一次！",
-  "avatarUrl":"https://jinzhepro.github.io/logo.png",
+  "avatarUrl":"https://blog.jinzhepro.cc/logo.png",
   "GMEEK_VERSION":"last",
   "startSite": "12/19/2024",
   "needComment": 1,
@@ -11,11 +11,11 @@
   "onePageListNum":15,
   "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
   "showPostSource": 1,
-  "homeUrl": "https://jinzhepro.github.io",
+  "homeUrl": "https://blog.jinzhepro.cc",
   "singlePage":["about"],
-  "allHead":"<script src='https://jinzhepro.github.io/plugins/GmeekVercount.js'></script><script src='https://jinzhepro.github.io/plugins/GmeekTOC.js'></script>",
+  "allHead":"<script src='https://blog.jinzhepro.cc/plugins/GmeekVercount.js'></script><script src='https://blog.jinzhepro.cc/plugins/GmeekTOC.js'></script>",
   "primerCSS":"<link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />",
-  "script":"<script src='https://jinzhepro.github.io/plugins/lightbox.js'></script><script src='https://jinzhepro.github.io/plugins/mermaid.js'></script>",
+  "script":"<script src='https://blog.jinzhepro.cc/plugins/lightbox.js'></script><script src='https://blog.jinzhepro.cc/plugins/mermaid.js'></script>",
   "exlink":{},
   "iconList":{}
 }
