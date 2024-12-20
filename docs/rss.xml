@@ -1,5 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://jinzhepro.github.io</link><description>再努力一次！</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://jinzhepro.github.io/logo.png</url><title>avatar</title><link>https://jinzhepro.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 02:26:28 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>封装axios请求</title><link>https://jinzhepro.github.io/post/feng-zhuang-axios-qing-qiu.html</link><description>封装axios的好处：兼容多种请求方法，不需要关心是怎么调用的，只需要传入相关参数即可使用&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://jinzhepro.github.io</link><description>再努力一次！</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://jinzhepro.github.io/logo.png</url><title>avatar</title><link>https://jinzhepro.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 02:27:38 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>前端自动化</title><link>https://jinzhepro.github.io/post/qian-duan-zi-dong-hua.html</link><description>## 前端自动化&#13;
+&#13;
+前端代码的自动化构建,打包,测试,部署等一系列流程&#13;
+&#13;
+### CI&#13;
+&#13;
+持续集成：不断开发新的功能,并通过测试快速发现新功能是否可与旧版本集成.&#13;
+&#13;
+### CD&#13;
+&#13;
+持续部署：不断的经过测试用例的校验,并将代码发布到测试或生产环境&#13;
+&#13;
+### 意义&#13;
+&#13;
+- 相比人工稳定,提升软件质量&#13;
+- 效率迭代,便捷部署&#13;
+- 快速交付,便于管理。</description><guid isPermaLink="true">https://jinzhepro.github.io/post/qian-duan-zi-dong-hua.html</guid><pubDate>Fri, 20 Dec 2024 02:27:15 +0000</pubDate></item><item><title>封装axios请求</title><link>https://jinzhepro.github.io/post/feng-zhuang-axios-qing-qiu.html</link><description>封装axios的好处：兼容多种请求方法，不需要关心是怎么调用的，只需要传入相关参数即可使用&#13;
 &#13;
 我是在webpack项目里，用的到了ES6模块化进行封装&#13;
 &#13;
