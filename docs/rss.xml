@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://blog.jinzhepro.cc</link><description>路漫漫其修远兮，吾将上下而求索。</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog.jinzhepro.cc/logo.png</url><title>avatar</title><link>https://blog.jinzhepro.cc</link></image><lastBuildDate>Fri, 20 Dec 2024 06:44:53 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>日常问题</title><link>https://blog.jinzhepro.cc/post/ri-chang-wen-ti.html</link><description># Webpack&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://blog.jinzhepro.cc</link><description>路漫漫其修远兮，吾将上下而求索。</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog.jinzhepro.cc/logo.png</url><title>avatar</title><link>https://blog.jinzhepro.cc</link></image><lastBuildDate>Fri, 20 Dec 2024 06:50:22 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>日常问题</title><link>https://blog.jinzhepro.cc/post/ri-chang-wen-ti.html</link><description># Webpack&#13;
 &#13;
 ## 1. npm run build 自闭合标签问题和属性值引号问题&#13;
 &#13;
@@ -752,4 +752,9 @@ fetchApi({&#13;
 &#13;
 - 新生代通常只支持1~8M的容量，存放生存时间短的对象，由**副垃圾回收器**负责。</description><guid isPermaLink="true">https://blog.jinzhepro.cc/post/V8-de-la-ji-hui-shou-qi.html</guid><pubDate>Fri, 20 Dec 2024 02:20:22 +0000</pubDate></item><item><title>互联网协议</title><link>https://blog.jinzhepro.cc/post/hu-lian-wang-xie-yi.html</link><description># 实体层&#13;
 &#13;
-使用物理手段链接电脑，如光缆，wifi。</description><guid isPermaLink="true">https://blog.jinzhepro.cc/post/hu-lian-wang-xie-yi.html</guid><pubDate>Thu, 19 Dec 2024 08:42:43 +0000</pubDate></item><item><title>收藏</title><link>https://blog.jinzhepro.cc/collection.html</link><description>1。</description><guid isPermaLink="true">https://blog.jinzhepro.cc/collection.html</guid><pubDate>Fri, 20 Dec 2024 06:44:32 +0000</pubDate></item><item><title>关于我</title><link>https://blog.jinzhepro.cc/about.html</link><description>Hi，这里是 _JinzhePro_ ，一个有着各种爱好的码农，曾任职于众安保险（北京），中易万合（青岛），灵犀科技（青岛），现就职于青岛某国企前端开发。</description><guid isPermaLink="true">https://blog.jinzhepro.cc/about.html</guid><pubDate>Thu, 19 Dec 2024 09:40:40 +0000</pubDate></item></channel></rss>
+使用物理手段链接电脑，如光缆，wifi。</description><guid isPermaLink="true">https://blog.jinzhepro.cc/post/hu-lian-wang-xie-yi.html</guid><pubDate>Thu, 19 Dec 2024 08:42:43 +0000</pubDate></item><item><title>收藏</title><link>https://blog.jinzhepro.cc/collection.html</link><description>&#13;
+## React&#13;
+&#13;
+| 名称 | 介绍 | 地址 |&#13;
+| --- | --- | --- |&#13;
+| React官方文档 | 用于构建 Web 和原生交互界面的库。</description><guid isPermaLink="true">https://blog.jinzhepro.cc/collection.html</guid><pubDate>Fri, 20 Dec 2024 06:44:32 +0000</pubDate></item><item><title>关于我</title><link>https://blog.jinzhepro.cc/about.html</link><description>Hi，这里是 _JinzhePro_ ，一个有着各种爱好的码农，曾任职于众安保险（北京），中易万合（青岛），灵犀科技（青岛），现就职于青岛某国企前端开发。</description><guid isPermaLink="true">https://blog.jinzhepro.cc/about.html</guid><pubDate>Thu, 19 Dec 2024 09:40:40 +0000</pubDate></item></channel></rss>
