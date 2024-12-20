@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://jinzhepro.github.io/plugins/GmeekVercount.js'></script><script src='https://jinzhepro.github.io/plugins/GmeekTOC.js'></script>
+    <link rel="icon" href="https://jinzhepro.github.io/logo.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# Webpack
+
+## 1. npm run build 自闭合标签问题和属性值引号问题
+
+我上一个项目的是我build扔到后台当作静态资源发布的，但当我build之后扔给后台的时候，后台和我说报错了，原因是解析错误，看了下日志是缺少闭合标签和引号，只需要在html-webpack-plugin里配置一下即可：
+
+```jsx
+xhtml: true, // 将link标记渲染为自动关闭（符合XHTML）
+minify:{
+  removeAttributeQuotes: false, // 元素属性引号
+  keepClosingSlash: true // 自闭合元素“/”
+}
+```
+
+这只是针对于webpack打包后`link`标签的结果，另外我们可以在index.html模板里手动改变`meta`的闭合标签
+
+# Vue
+
+## 1. element-ui 事件传参问题
+
+在`Table`组件里使用表单组件的时候，比如`Radio`，因为`Radio`有一个自己的`change`事件，参数是值变化时触发的事件，但与此同时我还想拿到到`scope.row`，问题就来了：假如说我们这么写：
+
+```html
+<el-table-column label='地址' show-overflow-tooltip>
+  <template slot-scope='scope'>
+    <el-radio-group @change='change(scope.row)'>
+      <el-radio :label='1'>备选项1</el-radio>
+      <el-radio :label='2'>备选项2</el-radio>
+    </el-radio-group>
+  </template>
+</el-table-column>
+```
+
+这样的话scope.row就会把`change`的默认参数给覆盖掉，因为`change`默认是不传参的：`@change='change'`，这意味着我们不能同时拿到两个值，要不就是`change`的值，要不就是`scope.row`的值，查了一下vue中事件可以用`$event`代替，所以我们可以这么写：
+
+```html
+<el-table-column label='地址' show-overflow-tooltip>
+  <template slot-scope='scope'>
+    <el-radio-group @change='change($event, scope.row)'>
+      <el-radio :label='1'>备选项1</el-radio>
+      <el-radio :label='2'>备选项2</el-radio>
+    </el-radio-group>
+  </template>
+</el-table-column>
+```
+
+这样一来我们就可以同时拿到拿到`change`的值和`scope.row`的值。">
+<meta property="og:title" content="日常问题">
+<meta property="og:description" content="# Webpack
+
+## 1. npm run build 自闭合标签问题和属性值引号问题
+
+我上一个项目的是我build扔到后台当作静态资源发布的，但当我build之后扔给后台的时候，后台和我说报错了，原因是解析错误，看了下日志是缺少闭合标签和引号，只需要在html-webpack-plugin里配置一下即可：
+
+```jsx
+xhtml: true, // 将link标记渲染为自动关闭（符合XHTML）
+minify:{
+  removeAttributeQuotes: false, // 元素属性引号
+  keepClosingSlash: true // 自闭合元素“/”
+}
+```
+
+这只是针对于webpack打包后`link`标签的结果，另外我们可以在index.html模板里手动改变`meta`的闭合标签
+
+# Vue
+
+## 1. element-ui 事件传参问题
+
+在`Table`组件里使用表单组件的时候，比如`Radio`，因为`Radio`有一个自己的`change`事件，参数是值变化时触发的事件，但与此同时我还想拿到到`scope.row`，问题就来了：假如说我们这么写：
+
+```html
+<el-table-column label='地址' show-overflow-tooltip>
+  <template slot-scope='scope'>
+    <el-radio-group @change='change(scope.row)'>
+      <el-radio :label='1'>备选项1</el-radio>
+      <el-radio :label='2'>备选项2</el-radio>
+    </el-radio-group>
+  </template>
+</el-table-column>
+```
+
+这样的话scope.row就会把`change`的默认参数给覆盖掉，因为`change`默认是不传参的：`@change='change'`，这意味着我们不能同时拿到两个值，要不就是`change`的值，要不就是`scope.row`的值，查了一下vue中事件可以用`$event`代替，所以我们可以这么写：
+
+```html
+<el-table-column label='地址' show-overflow-tooltip>
+  <template slot-scope='scope'>
+    <el-radio-group @change='change($event, scope.row)'>
+      <el-radio :label='1'>备选项1</el-radio>
+      <el-radio :label='2'>备选项2</el-radio>
+    </el-radio-group>
+  </template>
+</el-table-column>
+```
+
+这样一来我们就可以同时拿到拿到`change`的值和`scope.row`的值。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jinzhepro.github.io/post/ri-chang-wen-ti.html">
+<meta property="og:image" content="https://jinzhepro.github.io/logo.png">
+<title>日常问题</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">日常问题</h1>
+<div class="title-right">
+    <a href="https://jinzhepro.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/42" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>Webpack</h1>
+<h2>1. npm run build 自闭合标签问题和属性值引号问题</h2>
+<p>我上一个项目的是我build扔到后台当作静态资源发布的，但当我build之后扔给后台的时候，后台和我说报错了，原因是解析错误，看了下日志是缺少闭合标签和引号，只需要在html-webpack-plugin里配置一下即可：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate">xhtml: <span class="pl-c1">true</span><span class="pl-kos">,</span> <span class="pl-c">// 将link标记渲染为自动关闭（符合XHTML）</span>
+<span class="pl-s1">minify</span>:<span class="pl-kos">{</span>
+  <span class="pl-c1">removeAttributeQuotes</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// 元素属性引号</span>
+  <span class="pl-c1">keepClosingSlash</span>: <span class="pl-c1">true</span> <span class="pl-c">// 自闭合元素“/”</span>
+<span class="pl-kos">}</span></pre></div>
+<p>这只是针对于webpack打包后<code class="notranslate">link</code>标签的结果，另外我们可以在index.html模板里手动改变<code class="notranslate">meta</code>的闭合标签</p>
+<h1>Vue</h1>
+<h2>1. element-ui 事件传参问题</h2>
+<p>在<code class="notranslate">Table</code>组件里使用表单组件的时候，比如<code class="notranslate">Radio</code>，因为<code class="notranslate">Radio</code>有一个自己的<code class="notranslate">change</code>事件，参数是值变化时触发的事件，但与此同时我还想拿到到<code class="notranslate">scope.row</code>，问题就来了：假如说我们这么写：</p>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">el-table-column</span> <span class="pl-c1">label</span>="<span class="pl-s">地址</span>" <span class="pl-c1">show-overflow-tooltip</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">template</span> <span class="pl-c1">slot-scope</span>="<span class="pl-s">scope</span>"<span class="pl-kos">&gt;</span>
+    <span class="pl-kos">&lt;</span><span class="pl-ent">el-radio-group</span> <span class="pl-c1">@change</span>="<span class="pl-s">change(scope.row)</span>"<span class="pl-kos">&gt;</span>
+      <span class="pl-kos">&lt;</span><span class="pl-ent">el-radio</span> <span class="pl-c1">:label</span>="<span class="pl-s">1</span>"<span class="pl-kos">&gt;</span>备选项1<span class="pl-kos">&lt;/</span><span class="pl-ent">el-radio</span><span class="pl-kos">&gt;</span>
+      <span class="pl-kos">&lt;</span><span class="pl-ent">el-radio</span> <span class="pl-c1">:label</span>="<span class="pl-s">2</span>"<span class="pl-kos">&gt;</span>备选项2<span class="pl-kos">&lt;/</span><span class="pl-ent">el-radio</span><span class="pl-kos">&gt;</span>
+    <span class="pl-kos">&lt;/</span><span class="pl-ent">el-radio-group</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;/</span><span class="pl-ent">template</span><span class="pl-kos">&gt;</span>
+<span class="pl-kos">&lt;/</span><span class="pl-ent">el-table-column</span><span class="pl-kos">&gt;</span></pre></div>
+<p>这样的话scope.row就会把<code class="notranslate">change</code>的默认参数给覆盖掉，因为<code class="notranslate">change</code>默认是不传参的：<code class="notranslate">@change="change"</code>，这意味着我们不能同时拿到两个值，要不就是<code class="notranslate">change</code>的值，要不就是<code class="notranslate">scope.row</code>的值，查了一下vue中事件可以用<code class="notranslate">$event</code>代替，所以我们可以这么写：</p>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">el-table-column</span> <span class="pl-c1">label</span>="<span class="pl-s">地址</span>" <span class="pl-c1">show-overflow-tooltip</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">template</span> <span class="pl-c1">slot-scope</span>="<span class="pl-s">scope</span>"<span class="pl-kos">&gt;</span>
+    <span class="pl-kos">&lt;</span><span class="pl-ent">el-radio-group</span> <span class="pl-c1">@change</span>="<span class="pl-s">change($event, scope.row)</span>"<span class="pl-kos">&gt;</span>
+      <span class="pl-kos">&lt;</span><span class="pl-ent">el-radio</span> <span class="pl-c1">:label</span>="<span class="pl-s">1</span>"<span class="pl-kos">&gt;</span>备选项1<span class="pl-kos">&lt;/</span><span class="pl-ent">el-radio</span><span class="pl-kos">&gt;</span>
+      <span class="pl-kos">&lt;</span><span class="pl-ent">el-radio</span> <span class="pl-c1">:label</span>="<span class="pl-s">2</span>"<span class="pl-kos">&gt;</span>备选项2<span class="pl-kos">&lt;/</span><span class="pl-ent">el-radio</span><span class="pl-kos">&gt;</span>
+    <span class="pl-kos">&lt;/</span><span class="pl-ent">el-radio-group</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;/</span><span class="pl-ent">template</span><span class="pl-kos">&gt;</span>
+<span class="pl-kos">&lt;/</span><span class="pl-ent">el-table-column</span><span class="pl-kos">&gt;</span></pre></div>
+<p>这样一来我们就可以同时拿到拿到<code class="notranslate">change</code>的值和<code class="notranslate">scope.row</code>的值。</p>
+<h1>混合开发问题</h1>
+<h2>1. js调用Native</h2>
+<p>最简单的方法就是Native通过js注入在<code class="notranslate">window</code>对象上挂载要执行的函数，浏览器通过调用这个方法来达到交互的目的。</p>
+<h2>2. Android下H5页面重定向问题</h2>
+<p>Native下h5页面重定向，Android端的表现是又打开了一个浏览器加载，而ios没问题，可以在app内跳转，这个问题的主要原因是Android监听不到<code class="notranslate">window.location.href</code>所以不会触发<code class="notranslate">shouldOverrideUrlLoading</code>，解决方案是模拟点击：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">const</span> <span class="pl-c1">A_TAG</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">getElementById</span><span class="pl-kos">(</span><span class="pl-s">"jump"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-c1">A_TAG</span><span class="pl-kos">.</span><span class="pl-en">setAttribute</span><span class="pl-kos">(</span><span class="pl-s">"href"</span><span class="pl-kos">,</span> <span class="pl-smi">this</span><span class="pl-kos">.</span><span class="pl-c1">href</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-c1">A_TAG</span><span class="pl-kos">.</span><span class="pl-en">click</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<h2>3. ios下Promise失效</h2>
+<p>我在某个项目里使用Promise来获取ios的回调，触发回调后调用ios的登陆组件。第一次正常跳出登陆组件，关闭后再次触发不跳转（Android正常）。debugger之后发现promise回调执行完毕后并没有触发resolve，很是不解，查了很多资料也没有查到，没办法到最后只能用回调函数解决。</p>
+<h1>React</h1>
+<h2>1. 使用<code class="notranslate">react-intl</code>国际化问题 &gt;2018.11.29</h2>
+<p>日前项目里使用<code class="notranslate">react-intl</code>进行国际化，项目里要求简体中文、英文、繁体中文，所以按照官网我们要引入：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-kos">{</span> <span class="pl-v">IntlProvider</span><span class="pl-kos">,</span> <span class="pl-s1">addLocaleData</span> <span class="pl-kos">}</span> <span class="pl-k">from</span> <span class="pl-s">"react-intl"</span><span class="pl-kos">;</span>
+
+<span class="pl-k">import</span> <span class="pl-s1">zh_CN</span> <span class="pl-k">from</span> <span class="pl-s">"./langConfig/zh_CN.js"</span><span class="pl-kos">;</span> <span class="pl-c">//导入配置文件</span>
+<span class="pl-k">import</span> <span class="pl-s1">zh_HK</span> <span class="pl-k">from</span> <span class="pl-s">"./langConfig/zh_HK.js"</span><span class="pl-kos">;</span>
+<span class="pl-k">import</span> <span class="pl-s1">en_US</span> <span class="pl-k">from</span> <span class="pl-s">"./langConfig/en_US.js"</span><span class="pl-kos">;</span>
+
+<span class="pl-k">import</span> <span class="pl-s1">en</span> <span class="pl-k">from</span> <span class="pl-s">"react-intl/locale-data/en"</span><span class="pl-kos">;</span> <span class="pl-c">//导入地点数据库，作用于日期格式化或单复数等</span>
+<span class="pl-k">import</span> <span class="pl-s1">zh</span> <span class="pl-k">from</span> <span class="pl-s">"react-intl/locale-data/zh"</span><span class="pl-kos">;</span>
+
+<span class="pl-en">addLocaleData</span><span class="pl-kos">(</span><span class="pl-kos">[</span>...<span class="pl-s1">en</span><span class="pl-kos">,</span> ...<span class="pl-s1">zh</span><span class="pl-kos">]</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-k">const</span> <span class="pl-s1">langMap</span> <span class="pl-c1">=</span> <span class="pl-kos">{</span>
+  <span class="pl-c1">zh</span>: <span class="pl-s1">zh_CN</span><span class="pl-kos">,</span>
+  <span class="pl-s">"???"</span>: <span class="pl-s1">zh_HK</span><span class="pl-kos">,</span> <span class="pl-c">// 繁体中文包在哪？</span>
+  <span class="pl-c1">en</span>: <span class="pl-s1">en_US</span><span class="pl-kos">,</span>
+<span class="pl-kos">}</span><span class="pl-kos">;</span></pre></div>
+<p>查看了一下<code class="notranslate">react-intl/locale-data</code>下并没有类似于<code class="notranslate">zh_HK</code>或<code class="notranslate">zh_TW</code>的包，那么这个繁体中文的国际化在哪呢？</p>
+<p>经过我和同事的一番努力，在源码里，发现这个<code class="notranslate">addLocaleData</code>方法实际上是引用了<code class="notranslate">intl-messageformat</code>，我们在<code class="notranslate">intl-messageformat</code>的locale-data文件夹下发现了未编译的地点数据库文件，查看了<code class="notranslate">zh.js</code>，如下：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="/images/git/react-intl.png"><img src="/images/git/react-intl.png" style="max-width: 100%;"></a></p>
+<p>原来他们把中文简体和繁体都放在一起了，仔细看会发现，虽然上面罗列了八种中文字体，但是所以简体使用的是同一套规则，所有繁体也是同一套规则。</p>
+<p>明白了之后我们就可以这么写了：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">const</span> <span class="pl-s1">langMap</span> <span class="pl-c1">=</span> <span class="pl-kos">{</span>
+  <span class="pl-c1">zh</span>: <span class="pl-s1">zh_CN</span><span class="pl-kos">,</span>
+  <span class="pl-c1">zh_Hant</span>: <span class="pl-s1">zh_HK</span><span class="pl-kos">,</span> <span class="pl-c">// 繁体中文包在哪？</span>
+  <span class="pl-c1">en</span>: <span class="pl-s1">en_US</span><span class="pl-kos">,</span>
+<span class="pl-kos">}</span><span class="pl-kos">;</span></pre></div>
+<p>然后你就会发现不报错了啦，解决！</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://jinzhepro.github.io">JinzhePro</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/19/2024"!=""){
+    var startSite=new Date("12/19/2024");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","jinzhepro/jinzhepro.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://jinzhepro.github.io/plugins/lightbox.js'></script>
+
+</html>
