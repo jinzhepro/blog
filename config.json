@@ -12,9 +12,12 @@
   "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
   "showPostSource": 1,
   "homeUrl": "https://blog.jinzhepro.cc",
-  "singlePage":["about", "collection"],
+  "singlePage":["collection", "about", "link"],
   "allHead":"<script src='https://blog.jinzhepro.cc/plugins/GmeekVercount.js'></script><script src='https://blog.jinzhepro.cc/plugins/GmeekTOC.js'></script>",
   "primerCSS":"<link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />",
   "script":"<script src='https://blog.jinzhepro.cc/plugins/lightbox.js'></script><script src='https://blog.jinzhepro.cc/plugins/mermaid.js'></script>",
-  "iconList":{"collection": "M0 2.75C0 1.784.784 1 1.75 1H5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1h6.75c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H7.5c-.55 0-1.07-.26-1.4-.7l-.9-1.2a.25.25 0 0 0-.2-.1Z"}
+  "iconList":{"collection": "M0 2.75C0 1.784.784 1 1.75 1H5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1h6.75c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H7.5c-.55 0-1.07-.26-1.4-.7l-.9-1.2a.25.25 0 0 0-.2-.1Z"},
+  "exlink": {
+    "link": "https://www.douban.com/people/jinzhepro"
+  }
 }
