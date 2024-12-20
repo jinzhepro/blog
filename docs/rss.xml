@@ -1,5 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://jinzhepro.github.io</link><description>再努力一次！</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://jinzhepro.github.io/logo.png</url><title>avatar</title><link>https://jinzhepro.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 02:38:00 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>异步编程</title><link>https://jinzhepro.github.io/post/yi-bu-bian-cheng.html</link><description>## 回调函数&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://jinzhepro.github.io</link><description>再努力一次！</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://jinzhepro.github.io/logo.png</url><title>avatar</title><link>https://jinzhepro.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 02:38:22 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>语句的执行</title><link>https://jinzhepro.github.io/post/yu-ju-de-zhi-xing.html</link><description>## Completion Record 标准类型&#13;
+&#13;
+1. [[type]]：完成的类型（break、continue、return、throw、normal）&#13;
+2. [[value]] ：返回值（如果没有，则为empty）&#13;
+3. [[target]] ：语句的目标&#13;
+&#13;
+```jsx&#13;
+{&#13;
+  var a = 1; // normal, undefined, empty&#13;
+  return 2; // return, 2, empty&#13;
+  a++;&#13;
+  console.log(a);&#13;
+} // return, 2, empty&#13;
+// 带有target的语句&#13;
+outer: while (true) {&#13;
+  inner: while (true) {&#13;
+    break outer;&#13;
+  }&#13;
+}&#13;
+console.log('finished');&#13;
+```。</description><guid isPermaLink="true">https://jinzhepro.github.io/post/yu-ju-de-zhi-xing.html</guid><pubDate>Fri, 20 Dec 2024 02:38:00 +0000</pubDate></item><item><title>异步编程</title><link>https://jinzhepro.github.io/post/yi-bu-bian-cheng.html</link><description>## 回调函数&#13;
 &#13;
 最原始的异步编程方法（回调地狱）&#13;
 &#13;
