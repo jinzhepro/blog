@@ -10,17 +10,17 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# 实体层
+<meta name="description" content="## /[U+4E00–U+9FA5]/
 
-使用物理手段链接电脑，如光缆，wifi。">
-<meta property="og:title" content="111">
-<meta property="og:description" content="# 实体层
+这是我们平时最常用的汉字匹配正则表达式，Unicode1.0收录了U+4E00–U+9FA5范围内的文字，共计20902个汉字，但问题是这是1993年发布的，至今已经过去将近30年时间，这中间也已经加入了相当多的汉字。">
+<meta property="og:title" content="正则的汉字匹配问题">
+<meta property="og:description" content="## /[U+4E00–U+9FA5]/
 
-使用物理手段链接电脑，如光缆，wifi。">
+这是我们平时最常用的汉字匹配正则表达式，Unicode1.0收录了U+4E00–U+9FA5范围内的文字，共计20902个汉字，但问题是这是1993年发布的，至今已经过去将近30年时间，这中间也已经加入了相当多的汉字。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://jinzhepro.github.io/post/111.html">
+<meta property="og:url" content="https://jinzhepro.github.io/post/zheng-ze-de-han-zi-pi-pei-wen-ti.html">
 <meta property="og:image" content="https://jinzhepro.github.io/logo.png">
-<title>111</title>
+<title>正则的汉字匹配问题</title>
 
 
 
@@ -53,7 +53,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">111</h1>
+<h1 class="postTitle">正则的汉字匹配问题</h1>
 <div class="title-right">
     <a href="https://jinzhepro.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -61,7 +61,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/31" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -77,54 +77,25 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>实体层</h1>
-<p>使用物理手段链接电脑，如光缆，wifi。</p>
-<h1>链接层</h1>
-<p>规定了电信号的解读方式。</p>
-<ul>
-<li>
-<p>以太网协议</p>
-<p>以太网规定，一组电信号为一个数据包，也叫做<code class="notranslate">帧</code>，每一帧都分为<code class="notranslate">标头（head）</code>和<code class="notranslate">数据（data）</code>。标头包含了局书包的一些说明项，包括发送者、接受者、数据类型等。数据则是具体的发送内容。</p>
-</li>
-<li>
-<p>MAC地址</p>
-<p>MAC地址实际为数据包的的发送和接收地址，每一个网卡在出厂时都规定了一个唯一的MAC地址。</p>
-</li>
-<li>
-<p>ARP协议</p>
-<p>数据报文必须封装成帧才能通过链接层发送，帧必须包含对方的MAC地址，ARP协议可以通过解析对方的IP地址来获取MAC地址</p>
-</li>
-<li>
-<p>广播</p>
-<p>以太网是通过广播的方式向本网络的所有计算机发送数据帧，计算机自己判断是否为接收方。</p>
-</li>
-</ul>
-<h1>网络层</h1>
-<p>互联网是无数子网络共同组成的一个巨型网络，否则互联网将会收到每个人发送的包，那将会是灾难！</p>
-<ul>
-<li>
-<p>IP协议</p>
-<p>规定网络地址的协议。为每一台计算机分配IP地址，判断两台计算机是否处于同一个子网络</p>
-</li>
-<li>
-<p>子网掩码</p>
-<p>表示子网络特征的一个参数，网络部分和主机部分的解析方式。<br>
-IP地址172.16.254.1，如果已知网络部分是前24位，主机部分是后8位，那么子网络掩码就是11111111.11111111.11111111.00000000，写成十进制就是255.255.255.0。</p>
-</li>
-</ul>
-<h1>传输层</h1>
-<p>建立"端口到端口"的通信。每个应用只取自己所需特定端口的数据</p>
-<h2>UDP</h2>
-<p>比较简单，容易实现，但是缺点是可靠性较差，一旦数据包发出，无法知道对方是否收到</p>
-<h2>TCP</h2>
-<ul>
-<li>建立连接的三次握手<br>
-客户端发送ACK发起连接→→→服务端发送SYN+ACK确认连接→→→客户端发送ACK确认连接→→→连接成功</li>
-<li>断开连接的四次挥手<br>
-客户端发送FIN→→→服务端收到之后发送ACK确认→→→服务端发送FIN→→→客户端发送ACK确认→→→断开成功</li>
-</ul>
-<h1>应用层</h1>
-<p>规定应用程序的数据格式。最高的一层，直接面对用户。它的数据就放在TCP数据包的"数据"部分。</p></div>
+<div class="markdown-body" id="postBody"><h2>/[U+4E00–U+9FA5]/</h2>
+<p>这是我们平时最常用的汉字匹配正则表达式，Unicode1.0收录了U+4E00–U+9FA5范围内的文字，共计20902个汉字，但问题是这是1993年发布的，至今已经过去将近30年时间，这中间也已经加入了相当多的汉字。</p>
+<h2>历史</h2>
+<p><strong>1993年，Unicode1.0，/[U+4E00–U+9FA5]/，更新20902</strong></p>
+<p>2000年，Unicode3.0，扩展A区，更新6592</p>
+<p>2001年，Unicode3.1，扩展B区，更新42717</p>
+<p>2003第一、四、五、六修订，Unicode5.2，扩展C区及其他汉字，更新4149</p>
+<p>2010年，Unicode6.0，扩展D区，更新222</p>
+<p>2015年，Unicode8.0，扩展E区，更新5762</p>
+<p>2017年，Unicode10.0，扩展F区，更新7473</p>
+<p>2020年，Unicode13.0，扩展G区，更新4939</p>
+<h2>Unified_Ideograph</h2>
+<p>中日韩统一表意文字。为了统一简体中文，繁体中文，日本，韩文，越南文等文字，在Unicode标准中赋予统一编码。</p>
+<p>/\p{Unified_Ideograph}/u</p>
+<p>\p{}表示根据Unicode属性值进行匹配</p>
+<p>u代表任何Unicode值都将被转译</p>
+<p><em>参考：</em></p>
+<p>[<a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E6%97%A5%E9%9F%93%E7%B5%B1%E4%B8%80%E8%A1%A8%E6%84%8F%E6%96%87%E5%AD%97" rel="nofollow">中日韓統一表意文字 - 维基百科，自由的百科全书</a>](<a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E6%97%A5%E9%9F%93%E7%B5%B1%E4%B8%80%E8%A1%A8%E6%84%8F%E6%96%87%E5%AD%97" rel="nofollow">https://zh.wikipedia.org/wiki/%E4%B8%AD%E6%97%A5%E9%9F%93%E7%B5%B1%E4%B8%80%E8%A1%A8%E6%84%8F%E6%96%87%E5%AD%97</a>)</p>
+<p><a href="https://github.com/tc39/proposal-regexp-unicode-property-escapes">https://github.com/tc39/proposal-regexp-unicode-property-escapes</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

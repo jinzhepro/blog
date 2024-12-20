@@ -10,17 +10,81 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# 实体层
+<meta name="description" content="- 线性表结构
+- 使用一组连续的内存空间
+- 相同类型数据
 
-使用物理手段链接电脑，如光缆，wifi。">
-<meta property="og:title" content="111">
-<meta property="og:description" content="# 实体层
+## 线性表结构
 
-使用物理手段链接电脑，如光缆，wifi。">
+数据像一条线一样的结构,只有前,后两个方向.如链表,队列,栈等
+
+连续内存空间
+
+- 随机访问
+- 插入,删除就要做大量的迁移工作
+
+![233517526-8c2eebaf-a4ec-4821-b410-0348c697da76](https://github.com/user-attachments/assets/32a07dd3-76d2-4f9c-85af-b6b55dbb28fa)
+
+
+内存地址: `a[i]_address = base_address + i * data_type_size`
+
+## 低效的“插入”和“删除”
+
+如果我们在数组最后插入或删除,复杂度为O(1),如果在中间为O(n)
+
+### 优化
+
+插入:如果数组只是数据集,数据没有规律的情况下,我们可以把插入变成移动.
+![233517689-105e8010-8c2e-4d10-9c7b-6d53b027a65d](https://github.com/user-attachments/assets/262b3109-33cb-41e1-ad7d-db7d616e3391)
+
+
+删除:记录删除数据,将多次删除合并为一次删除.
+![233517704-a8e0e995-be70-4d08-a3d3-4b669646197d](https://github.com/user-attachments/assets/e0243ecc-7bf0-4224-a6a2-ba3d94944948)
+
+
+## 越界问题
+
+访问到不属于该数组的一块内存地址上,造成bug.。">
+<meta property="og:title" content="数组">
+<meta property="og:description" content="- 线性表结构
+- 使用一组连续的内存空间
+- 相同类型数据
+
+## 线性表结构
+
+数据像一条线一样的结构,只有前,后两个方向.如链表,队列,栈等
+
+连续内存空间
+
+- 随机访问
+- 插入,删除就要做大量的迁移工作
+
+![233517526-8c2eebaf-a4ec-4821-b410-0348c697da76](https://github.com/user-attachments/assets/32a07dd3-76d2-4f9c-85af-b6b55dbb28fa)
+
+
+内存地址: `a[i]_address = base_address + i * data_type_size`
+
+## 低效的“插入”和“删除”
+
+如果我们在数组最后插入或删除,复杂度为O(1),如果在中间为O(n)
+
+### 优化
+
+插入:如果数组只是数据集,数据没有规律的情况下,我们可以把插入变成移动.
+![233517689-105e8010-8c2e-4d10-9c7b-6d53b027a65d](https://github.com/user-attachments/assets/262b3109-33cb-41e1-ad7d-db7d616e3391)
+
+
+删除:记录删除数据,将多次删除合并为一次删除.
+![233517704-a8e0e995-be70-4d08-a3d3-4b669646197d](https://github.com/user-attachments/assets/e0243ecc-7bf0-4224-a6a2-ba3d94944948)
+
+
+## 越界问题
+
+访问到不属于该数组的一块内存地址上,造成bug.。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://jinzhepro.github.io/post/111.html">
+<meta property="og:url" content="https://jinzhepro.github.io/post/shu-zu.html">
 <meta property="og:image" content="https://jinzhepro.github.io/logo.png">
-<title>111</title>
+<title>数组</title>
 
 
 
@@ -53,7 +117,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">111</h1>
+<h1 class="postTitle">数组</h1>
 <div class="title-right">
     <a href="https://jinzhepro.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -61,7 +125,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/17" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -77,54 +141,29 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>实体层</h1>
-<p>使用物理手段链接电脑，如光缆，wifi。</p>
-<h1>链接层</h1>
-<p>规定了电信号的解读方式。</p>
-<ul>
-<li>
-<p>以太网协议</p>
-<p>以太网规定，一组电信号为一个数据包，也叫做<code class="notranslate">帧</code>，每一帧都分为<code class="notranslate">标头（head）</code>和<code class="notranslate">数据（data）</code>。标头包含了局书包的一些说明项，包括发送者、接受者、数据类型等。数据则是具体的发送内容。</p>
-</li>
-<li>
-<p>MAC地址</p>
-<p>MAC地址实际为数据包的的发送和接收地址，每一个网卡在出厂时都规定了一个唯一的MAC地址。</p>
-</li>
-<li>
-<p>ARP协议</p>
-<p>数据报文必须封装成帧才能通过链接层发送，帧必须包含对方的MAC地址，ARP协议可以通过解析对方的IP地址来获取MAC地址</p>
-</li>
-<li>
-<p>广播</p>
-<p>以太网是通过广播的方式向本网络的所有计算机发送数据帧，计算机自己判断是否为接收方。</p>
-</li>
+<div class="markdown-body" id="postBody"><ul>
+<li>线性表结构</li>
+<li>使用一组连续的内存空间</li>
+<li>相同类型数据</li>
 </ul>
-<h1>网络层</h1>
-<p>互联网是无数子网络共同组成的一个巨型网络，否则互联网将会收到每个人发送的包，那将会是灾难！</p>
+<h2>线性表结构</h2>
+<p>数据像一条线一样的结构,只有前,后两个方向.如链表,队列,栈等</p>
+<p>连续内存空间</p>
 <ul>
-<li>
-<p>IP协议</p>
-<p>规定网络地址的协议。为每一台计算机分配IP地址，判断两台计算机是否处于同一个子网络</p>
-</li>
-<li>
-<p>子网掩码</p>
-<p>表示子网络特征的一个参数，网络部分和主机部分的解析方式。<br>
-IP地址172.16.254.1，如果已知网络部分是前24位，主机部分是后8位，那么子网络掩码就是11111111.11111111.11111111.00000000，写成十进制就是255.255.255.0。</p>
-</li>
+<li>随机访问</li>
+<li>插入,删除就要做大量的迁移工作</li>
 </ul>
-<h1>传输层</h1>
-<p>建立"端口到端口"的通信。每个应用只取自己所需特定端口的数据</p>
-<h2>UDP</h2>
-<p>比较简单，容易实现，但是缺点是可靠性较差，一旦数据包发出，无法知道对方是否收到</p>
-<h2>TCP</h2>
-<ul>
-<li>建立连接的三次握手<br>
-客户端发送ACK发起连接→→→服务端发送SYN+ACK确认连接→→→客户端发送ACK确认连接→→→连接成功</li>
-<li>断开连接的四次挥手<br>
-客户端发送FIN→→→服务端收到之后发送ACK确认→→→服务端发送FIN→→→客户端发送ACK确认→→→断开成功</li>
-</ul>
-<h1>应用层</h1>
-<p>规定应用程序的数据格式。最高的一层，直接面对用户。它的数据就放在TCP数据包的"数据"部分。</p></div>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/32a07dd3-76d2-4f9c-85af-b6b55dbb28fa"><img src="https://github.com/user-attachments/assets/32a07dd3-76d2-4f9c-85af-b6b55dbb28fa" alt="233517526-8c2eebaf-a4ec-4821-b410-0348c697da76" style="max-width: 100%;"></a></p>
+<p>内存地址: <code class="notranslate">a[i]_address = base_address + i * data_type_size</code></p>
+<h2>低效的“插入”和“删除”</h2>
+<p>如果我们在数组最后插入或删除,复杂度为O(1),如果在中间为O(n)</p>
+<h3>优化</h3>
+<p>插入:如果数组只是数据集,数据没有规律的情况下,我们可以把插入变成移动.<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/262b3109-33cb-41e1-ad7d-db7d616e3391"><img src="https://github.com/user-attachments/assets/262b3109-33cb-41e1-ad7d-db7d616e3391" alt="233517689-105e8010-8c2e-4d10-9c7b-6d53b027a65d" style="max-width: 100%;"></a></p>
+<p>删除:记录删除数据,将多次删除合并为一次删除.<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e0243ecc-7bf0-4224-a6a2-ba3d94944948"><img src="https://github.com/user-attachments/assets/e0243ecc-7bf0-4224-a6a2-ba3d94944948" alt="233517704-a8e0e995-be70-4d08-a3d3-4b669646197d" style="max-width: 100%;"></a></p>
+<h2>越界问题</h2>
+<p>访问到不属于该数组的一块内存地址上,造成bug.</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

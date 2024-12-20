@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://jinzhepro.github.io/plugins/GmeekVercount.js'></script><script src='https://jinzhepro.github.io/plugins/GmeekTOC.js'></script>
+    <link rel="icon" href="https://jinzhepro.github.io/logo.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="本文知识点是摘自于[[汤姆大叔博客](http://www.cnblogs.com/TomXu/)](http://www.cnblogs.com/TomXu/)，自己记录理解并学习
+
+## 书写可维护的代码
+
+软件开发是一个熵增的过程，随着软件结构越来越复杂，代码维护就变得举步维艰，当你发现bug并理解修复他是最好的。">
+<meta property="og:title" content="编写高质量JavaScript代码">
+<meta property="og:description" content="本文知识点是摘自于[[汤姆大叔博客](http://www.cnblogs.com/TomXu/)](http://www.cnblogs.com/TomXu/)，自己记录理解并学习
+
+## 书写可维护的代码
+
+软件开发是一个熵增的过程，随着软件结构越来越复杂，代码维护就变得举步维艰，当你发现bug并理解修复他是最好的。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jinzhepro.github.io/post/bian-xie-gao-zhi-liang-JavaScript-dai-ma.html">
+<meta property="og:image" content="https://jinzhepro.github.io/logo.png">
+<title>编写高质量JavaScript代码</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">编写高质量JavaScript代码</h1>
+<div class="title-right">
+    <a href="https://jinzhepro.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/4" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>本文知识点是摘自于[<a href="http://www.cnblogs.com/TomXu/" rel="nofollow">汤姆大叔博客</a>](<a href="http://www.cnblogs.com/TomXu/)%EF%BC%8C%E8%87%AA%E5%B7%B1%E8%AE%B0%E5%BD%95%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AD%A6%E4%B9%A0" rel="nofollow">http://www.cnblogs.com/TomXu/)，自己记录理解并学习</a></p>
+<h2>书写可维护的代码</h2>
+<p>软件开发是一个熵增的过程，随着软件结构越来越复杂，代码维护就变得举步维艰，当你发现bug并理解修复他是最好的。否则，等你转移到其他任务，一段时间后再回来看你的代码，就需要：</p>
+<ul>
+<li>花时间学习和理解问题</li>
+<li>花时间学习和理解解决问题的代码</li>
+</ul>
+<p>如果是特别大的公司，开发人员并不是同一个人。因此，必须降低理解代码的成本，我们应该去开发更激动人心的功能，而不是花几小时几天去维护遗留代码。</p>
+<p>随着应用功能的增强，我们也许会面临以下问题：</p>
+<ul>
+<li>bug是暴露的</li>
+<li>要添加新功能</li>
+<li>应用可能要适应新的环境（比如新的浏览器）</li>
+<li>应用要改变用途</li>
+<li>甚至要重新再来（换一种架构或是用另一种语言编写）</li>
+</ul>
+<p>由于这些变化，我们不得不编写高质量，高性能，可维护的代码以减小我们维护的成本。</p>
+<p>这意味着我们的代码要：</p>
+<ul>
+<li>可读的</li>
+<li>一致的</li>
+<li>可预测的</li>
+<li>看上去是同一个人写的（？？？）</li>
+<li>已记录</li>
+</ul>
+<h2>全局变量的问题</h2>
+<p>全局变量的问题意味着你的应用和页面上的所有代码都共享这些全局变量，如果遇到同名但是不同功能的变量，冲突在所难免。<br>
+可能遇到的变量冲突的情况：</p>
+<ul>
+<li>第三方js库</li>
+<li>不同的人写的代码</li>
+</ul>
+<p>假如有的第三方库里面有的叫做apply的方法，而你又定义了一个apply的变量，那这个第三方库的apply就嗝屁了！</p>
+<p>由于JavaScript的特性，我们不自觉的就会创建出全局变量，首先，你可以甚至不需要声明就可以使用变量，第二，JavaScript有隐含的全局概念，意味着你不声明的任何变量都会成为全局变量：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+  <span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-s">"1"</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-smi">window</span><span class="pl-kos">.</span><span class="pl-c1">a</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "1"</span></pre></div>
+<p>此段代码中a并没有声明，但是莫名出现了一个全局变量a，解决方法是始终使用<code class="notranslate">var</code>声明变量：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+  <span class="pl-k">var</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span>
+<span class="pl-s1">consloe</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-smi">window</span><span class="pl-kos">.</span><span class="pl-c1">a</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined"</span></pre></div>
+<p>另一种反例就是使用任务链的情况下：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+  <span class="pl-k">var</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-s">"1"</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">a</span><span class="pl-kos">,</span> <span class="pl-s1">b</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined" "1"</span></pre></div>
+<p>看起来变量b又成为了全局变量，这并不是我们想要的，最理想的方法是使用“，”分隔进行声明，并且可以做一些基础操作：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+  <span class="pl-k">var</span> <span class="pl-s1">a</span><span class="pl-kos">,</span> <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-s">"1"</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span>
+<span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+  <span class="pl-k">var</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span><span class="pl-kos">,</span> <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-c1">2</span><span class="pl-kos">,</span> <span class="pl-s1">sum</span> <span class="pl-c1">=</span> <span class="pl-s1">a</span> <span class="pl-c1">+</span> <span class="pl-s1">b</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">a</span><span class="pl-kos">,</span> <span class="pl-s1">b</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined" "undefined"</span></pre></div>
+<p>这样的好处：</p>
+<ul>
+<li>提供了单一的地方寻找变量</li>
+<li>防止变量在声明之前使用</li>
+</ul>
+<p>这样我们就避免了全局变量污染。</p>
+<p><em>在ES5严格模式下未声明变量就使用会抛出一个错误</em></p>
+<p><em>在ES6中我们可以使用<code class="notranslate">let</code>关键字声明避免全局变量污染</em></p>
+<p>隐式全局变量和明确定义全局变量还是有一点区别的：</p>
+<ul>
+<li>通过<code class="notranslate">var</code>定义的全局变量不能通过<code class="notranslate">delete</code>操作符删除</li>
+<li>无<code class="notranslate">var</code>定义的全局变量可以通过<code class="notranslate">delete</code>操作符删除</li>
+</ul>
+<p>这表明，在技术上，隐式全局变量并不是真正的全局变量，但它们是全局对象的属性。属性是可以通过delete操作符删除的，而变量是不能的：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">var</span> <span class="pl-s1">global_var</span> <span class="pl-c1">=</span> <span class="pl-s">"1"</span><span class="pl-kos">;</span>
+<span class="pl-s1">global_novar</span> <span class="pl-c1">=</span> <span class="pl-s">"2"</span><span class="pl-kos">;</span>
+<span class="pl-kos">(</span><span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">{</span>
+  <span class="pl-s1">global_fromfun</span> <span class="pl-c1">=</span> <span class="pl-s">"3"</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
+
+<span class="pl-c">// 试图删除</span>
+<span class="pl-k">delete</span> <span class="pl-s1">global_var</span><span class="pl-kos">;</span>
+<span class="pl-k">delete</span> <span class="pl-s1">global_novar</span><span class="pl-kos">;</span>
+<span class="pl-k">delete</span> <span class="pl-s1">global_fromfun</span><span class="pl-kos">;</span>
+
+<span class="pl-c">// 测试</span>
+<span class="pl-k">typeof</span> <span class="pl-s1">global_var</span><span class="pl-kos">;</span> <span class="pl-c">// "string"</span>
+<span class="pl-k">typeof</span> <span class="pl-s1">global_novar</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined"</span>
+<span class="pl-k">typeof</span> <span class="pl-s1">global_fromfun</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined"</span></pre></div>
+<h2>预解析（hoisting）</h2>
+<p>在JavaScript中，你可以在函数的任何位置声明变量，执行起来并无差异，这是因为函数在执行时的预解析，讲变量提升到该作用域顶部：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">var</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-s">"2"</span><span class="pl-kos">;</span>
+<span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+  <span class="pl-en">alert</span><span class="pl-kos">(</span><span class="pl-s1">a</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined"</span>
+  <span class="pl-k">var</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-s">"1"</span><span class="pl-kos">;</span>
+  <span class="pl-en">alert</span><span class="pl-kos">(</span><span class="pl-s1">a</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "1"</span>
+<span class="pl-kos">}</span></pre></div>
+<p>在这个例子中，你会以为第一个alert会是“2”，实际上并非如此，因为函数预解析时检查到当前作用域内有一个变量a，所以将它提升到当前作用域的顶部，类似于下面这个例子：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">var</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-s">"2"</span><span class="pl-kos">;</span>
+<span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+  <span class="pl-k">var</span> <span class="pl-s1">a</span><span class="pl-kos">;</span>
+  <span class="pl-en">alert</span><span class="pl-kos">(</span><span class="pl-s1">a</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined"</span>
+  <span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-s">"1"</span><span class="pl-kos">;</span>
+  <span class="pl-en">alert</span><span class="pl-kos">(</span><span class="pl-s1">a</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "1"</span>
+<span class="pl-kos">}</span></pre></div>
+<p><em>为了完整，我们再提一提执行层面的稍微复杂点的东西。代码处理分两个阶段，第一阶段是变量，函数声明，以及正常格式的参数创建，这是一个解析和进入上下文 的阶段。第二个阶段是代码执行，函数表达式和不合格的标识符（为声明的变量）被创建。但是，出于实用的目的，我们就采用了”hoisting”这个概念， 这种ECMAScript标准中并未定义，通常用来描述行为。</em></p>
+<h2>for循环</h2>
+<p>通常的循环形式如下：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">for</span><span class="pl-kos">(</span><span class="pl-k">var</span> <span class="pl-s1">i</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">;</span> <span class="pl-s1">i</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">arr</span><span class="pl-kos">.</span><span class="pl-c1">length</span><span class="pl-kos">;</span> <span class="pl-s1">i</span><span class="pl-c1">++</span><span class="pl-kos">)</span><span class="pl-kos">{</span>
+  <span class="pl-c">//</span>
+<span class="pl-kos">}</span></pre></div>
+<p>这种循环的不足之处在于每次循环都要去取数组的长度，这会降低代码的执行效率，尤其当你的数组不是一个纯数组，而是一个HTMLCollection的时候，这意味着你每次循环都会去查询DOM，而查询DOM是相当费时的。</p>
+<p>这就是为什么要缓存数组长度的原因：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">for</span><span class="pl-kos">(</span><span class="pl-k">var</span> <span class="pl-s1">i</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-s1">arrLength</span> <span class="pl-c1">=</span> <span class="pl-s1">arr</span><span class="pl-kos">.</span><span class="pl-c1">length</span><span class="pl-kos">;</span> <span class="pl-s1">i</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">arrLength</span><span class="pl-kos">;</span> <span class="pl-s1">i</span><span class="pl-c1">++</span><span class="pl-kos">)</span><span class="pl-kos">{</span>
+	<span class="pl-c">//</span>
+<span class="pl-kos">}</span></pre></div>
+<p>在此过程中，你只检索了一次长度。</p>
+<p><em>现如今V8引擎已相当强大，如果你是普通数组，他会在编译时把你确定不变的代码移到循环外，其实差距不大，如果涉及到NodeLiist，建议还是要缓存一下。</em></p>
+<p>如果你还在纠结，也可以写成下面这个样子:</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">for</span><span class="pl-kos">(</span><span class="pl-k">var</span> <span class="pl-s1">i</span> <span class="pl-c1">=</span> <span class="pl-s1">arr</span><span class="pl-kos">.</span><span class="pl-c1">length</span><span class="pl-kos">;</span> <span class="pl-s1">i</span> <span class="pl-c1">&gt;</span> <span class="pl-c1">0</span><span class="pl-kos">;</span> <span class="pl-s1">i</span><span class="pl-c1">--</span><span class="pl-kos">)</span><span class="pl-kos">{</span>
+  <span class="pl-c">//</span>
+<span class="pl-kos">}</span></pre></div>
+<h2>for-in循环</h2>
+<p>for-in循环主要用在非数组对象的遍历上，也被称为“枚举”。</p>
+<p>从技术上讲，for-in也可以循环数组，但这是不推荐的，因为如果对象数组被自定义的功能增强，就可能发生逻辑错。而且，for-in循环顺序是不能保证的。</p>
+<p>有一个很重要的方法：<code class="notranslate">hasOwnProperty()</code>，这个方法的作用是判断是不是对象本身的属性，可用于去除原型链上的属性：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-c">// 对象</span>
+<span class="pl-k">var</span> <span class="pl-s1">man</span> <span class="pl-c1">=</span> <span class="pl-kos">{</span>
+   <span class="pl-c1">hands</span>: <span class="pl-c1">2</span><span class="pl-kos">,</span>
+   <span class="pl-c1">legs</span>: <span class="pl-c1">2</span><span class="pl-kos">,</span>
+   <span class="pl-c1">heads</span>: <span class="pl-c1">1</span>
+<span class="pl-kos">}</span><span class="pl-kos">;</span>
+
+<span class="pl-c">// 在代码的某个地方</span>
+<span class="pl-c">// 一个方法添加给了所有对象</span>
+<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-k">typeof</span> <span class="pl-v">Object</span><span class="pl-kos">.</span><span class="pl-c1">prototype</span><span class="pl-kos">.</span><span class="pl-c1">clone</span> <span class="pl-c1">===</span> <span class="pl-s">"undefined"</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+   <span class="pl-v">Object</span><span class="pl-kos">.</span><span class="pl-c1">prototype</span><span class="pl-kos">.</span><span class="pl-en">clone</span> <span class="pl-c1">=</span> <span class="pl-k">function</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span>
+
+<span class="pl-c">// 有hasOwnProperty方法</span>
+<span class="pl-k">for</span> <span class="pl-kos">(</span><span class="pl-k">var</span> <span class="pl-s1">i</span> <span class="pl-k">in</span> <span class="pl-s1">man</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+   <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">man</span><span class="pl-kos">.</span><span class="pl-en">hasOwnProperty</span><span class="pl-kos">(</span><span class="pl-s1">i</span><span class="pl-kos">)</span><span class="pl-kos">)</span> <span class="pl-kos">{</span> <span class="pl-c">// 过滤</span>
+      <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">i</span><span class="pl-kos">,</span> <span class="pl-s">":"</span><span class="pl-kos">,</span> <span class="pl-s1">man</span><span class="pl-kos">[</span><span class="pl-s1">i</span><span class="pl-kos">]</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+   <span class="pl-kos">}</span>
+<span class="pl-kos">}</span>
+<span class="pl-c">//  控制台显示结果</span>
+hands : <span class="pl-c1">2</span>
+legs : <span class="pl-c1">2</span>
+heads : <span class="pl-c1">1</span>
+
+<span class="pl-c">// 反例</span>
+<span class="pl-c">// 无hasOwnProperty方法</span>
+<span class="pl-k">for</span> <span class="pl-kos">(</span><span class="pl-k">var</span> <span class="pl-s1">i</span> <span class="pl-k">in</span> <span class="pl-s1">man</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+   <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">i</span><span class="pl-kos">,</span> <span class="pl-s">":"</span><span class="pl-kos">,</span> <span class="pl-s1">man</span><span class="pl-kos">[</span><span class="pl-s1">i</span><span class="pl-kos">]</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span>
+<span class="pl-c">// 控制台显示结果</span>
+hands : <span class="pl-c1">2</span>
+legs : <span class="pl-c1">2</span>
+heads : <span class="pl-c1">1</span>
+<span class="pl-s1">clone</span>: <span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c">// 原型链上的方法被“枚举”出来</span></pre></div>
+<p>另外一种使用hasOwnProperty()的形式是取消Object.prototype上的方法。像是：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">for</span> <span class="pl-kos">(</span><span class="pl-k">var</span> <span class="pl-s1">i</span> <span class="pl-k">in</span> <span class="pl-s1">man</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+   <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-v">Object</span><span class="pl-kos">.</span><span class="pl-c1">prototype</span><span class="pl-kos">.</span><span class="pl-c1">hasOwnProperty</span><span class="pl-kos">.</span><span class="pl-en">call</span><span class="pl-kos">(</span><span class="pl-s1">man</span><span class="pl-kos">,</span> <span class="pl-s1">i</span><span class="pl-kos">)</span><span class="pl-kos">)</span> <span class="pl-kos">{</span> <span class="pl-c">// 过滤</span>
+      <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">i</span><span class="pl-kos">,</span> <span class="pl-s">":"</span><span class="pl-kos">,</span> <span class="pl-s1">man</span><span class="pl-kos">[</span><span class="pl-s1">i</span><span class="pl-kos">]</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+   <span class="pl-kos">}</span>
+<span class="pl-kos">}</span></pre></div>
+<p><em>严格来说，不使用hasOwnProperty()并不是一个错误。根据任务以及你对代码的自信程度，你可以跳过它以提高些许的循环速度。但是当你对当前对象内容（和其原型链）不确定的时候，添加hasOwnProperty()更加保险些。</em></p>
+<h2>Switch</h2>
+<p>你可以通过类似下面形式的switch语句增强可读性和健壮性：</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">var</span> <span class="pl-s1">inspect_me</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">,</span>
+   <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s">''</span><span class="pl-kos">;</span>
+<span class="pl-k">switch</span> <span class="pl-kos">(</span><span class="pl-s1">inspect_me</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+  <span class="pl-k">case</span> <span class="pl-c1">0</span>:
+    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s">"zero"</span><span class="pl-kos">;</span>
+    <span class="pl-k">break</span><span class="pl-kos">;</span>
+  <span class="pl-k">case</span> <span class="pl-c1">1</span>:
+    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s">"one"</span><span class="pl-kos">;</span>
+    <span class="pl-k">break</span><span class="pl-kos">;</span>
+  <span class="pl-k">default</span>:
+    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s">"unknown"</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span></pre></div>
+<p>这个简单的例子中所遵循的风格约定如下：</p>
+<ul>
+<li>每个case和switch对齐（花括号缩进规则除外）</li>
+<li>每个case中代码缩进</li>
+<li>每个case以break清除结束</li>
+<li>避免贯穿（故意忽略break）。如果你非常确信贯穿是最好的方法，务必记录此情况，因为对于有些阅读人而言，它们可能看起来是错误的。</li>
+<li>以default结束switch：确保总有健全的结果，即使无情况匹配。</li>
+</ul>
+<h2>避免隐式类型转换</h2>
+<p>JavaScript的变量在比较的时候会隐式类型转换。这就是为什么一些诸如：false == 0 或 “” == 0 返回的结果是true。为避免引起混乱的隐含类型转换，在你比较值和表达式类型的时候始终使用===和!==操作符。</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">var</span> <span class="pl-s1">zero</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">;</span>
+<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">zero</span> <span class="pl-c1">===</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+   <span class="pl-c">// 不执行，因为zero为0, 而不是false</span>
+<span class="pl-kos">}</span>
+
+<span class="pl-c">// 反面示例</span>
+<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">zero</span> <span class="pl-c1">==</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+   <span class="pl-c">// 执行了...</span>
+<span class="pl-kos">}</span></pre></div>
+<p>有的观点认为这是没有必要的。然而JSlint要求严格相等，因为你可以清楚的看到变量的类型和值，以降低代码阅读时的精力消耗，不需要再去纠结“==”是故意的还是一个疏漏。</p>
+<h2>避免eval()</h2>
+<p>此方法接受任意字符串作为参数，并作为JavaScript来处理,，使用eval()也带来了安全隐患，因为被执行的代码（例如从网络来）可能已被篡改</p>
+<p>“eval是魔鬼”</p>
+<p>如果你绝对必须使用eval()，你可以考虑使用new Function()代替，有几个好处是代码将会在函数的局部作用域执行，并且不会污染全局变量</p>
+<p>考虑下面这个例子，这里仅a作为全局变量污染了命名空间:</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-k">typeof</span> <span class="pl-s1">a</span><span class="pl-kos">)</span><span class="pl-kos">;</span>    <span class="pl-c">// "undefined"</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-k">typeof</span> <span class="pl-s1">b</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined"</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-k">typeof</span> <span class="pl-s1">c</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined"</span>
+
+<span class="pl-k">var</span> <span class="pl-s1">jsstring</span> <span class="pl-c1">=</span> <span class="pl-s">"var a = 1; console.log(a);"</span><span class="pl-kos">;</span>
+<span class="pl-en">eval</span><span class="pl-kos">(</span><span class="pl-s1">jsstring</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// logs "1"</span>
+
+<span class="pl-s1">jsstring</span> <span class="pl-c1">=</span> <span class="pl-s">"var b = 2; console.log(b);"</span><span class="pl-kos">;</span>
+<span class="pl-k">new</span> <span class="pl-v">Function</span><span class="pl-kos">(</span><span class="pl-s1">jsstring</span><span class="pl-kos">)</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// logs "2"</span>
+
+<span class="pl-s1">jsstring</span> <span class="pl-c1">=</span> <span class="pl-s">"var c = 3; console.log(c);"</span><span class="pl-kos">;</span>
+<span class="pl-kos">(</span><span class="pl-k">function</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+   <span class="pl-en">eval</span><span class="pl-kos">(</span><span class="pl-s1">jsstring</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// logs "3"</span>
+
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-k">typeof</span> <span class="pl-s1">a</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// number</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-k">typeof</span> <span class="pl-s1">b</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined"</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-k">typeof</span> <span class="pl-s1">c</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// "undefined"</span></pre></div>
+<h2>parseInt()下的数值转换</h2>
+<p>使用parseInt()你可以从字符串中获取数值，该方法接受另一个基数参数，这经常省略，但不应该。当字符串以“0”开头的时候就有可能会出问题，例如，部分时间进入表单域，在ECMAScript 3中，开头为”0″的字符串被当做八进制处理了，但这已在ECMAScript 5中改变了。为了避免矛盾和意外的结果，总是指定基数参数。</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">var</span> <span class="pl-s1">month</span> <span class="pl-c1">=</span> <span class="pl-s">"06"</span><span class="pl-kos">,</span>
+    <span class="pl-s1">year</span> <span class="pl-c1">=</span> <span class="pl-s">"09"</span><span class="pl-kos">;</span>
+<span class="pl-s1">month</span> <span class="pl-c1">=</span> <span class="pl-en">parseInt</span><span class="pl-kos">(</span><span class="pl-s1">month</span><span class="pl-kos">,</span> <span class="pl-c1">10</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-s1">year</span> <span class="pl-c1">=</span> <span class="pl-en">parseInt</span><span class="pl-kos">(</span><span class="pl-s1">year</span><span class="pl-kos">,</span> <span class="pl-c1">10</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<h2>编码规范</h2>
+<p>建立和遵循编码规范是很重要的，这让你的代码保持一致性，可预测，更易于阅读和理解。一个新的开发者加入这个团队可以通读规范，理解其它团队成员书写的代码，更快上手干活。</p>
+<p>要记住，建立和坚定不移地遵循规范要比纠结于规范的细节重要的多。</p>
+<h2>缩进</h2>
+<p>代码没有缩进基本上就不能读了。唯一糟糕的事情就是不一致的缩进，因为它看上去像是遵循了规范，但是可能一路上伴随着混乱和惊奇。重要的是规范地使用缩进。</p>
+<p>使用Tab和空格都无所谓，最重要的是保持一致！</p>
+<h2>空格</h2>
+<p>适合使用空格的地方包括：</p>
+<ul>
+<li>for循环分号分开后的的部分：如for (var i = 0; i &lt; 10; i += 1) {...}</li>
+<li>for循环中初始化的多变量(i和max)：for (var i = 0, max = 10; i &lt; max; i += 1) {...}</li>
+<li>分隔数组项的逗号的后面：var a = [1, 2, 3];</li>
+<li>对象属性逗号的后面以及分隔属性名和属性值的冒号的后面：var o = {a: 1, b: 2};</li>
+<li>限定函数参数：myFunc(a, b, c)</li>
+<li>函数声明的花括号的前面：function myFunc() {}</li>
+<li>匿名函数表达式function的后面：var myFunc = function () {};</li>
+</ul>
+<p>空格使用的一点不足就是增加了文件的大小，但是压缩无此问题。</p>
+<h2>命名规范</h2>
+<ul>
+<li>以<code class="notranslate">大驼峰式命名法</code>命名<code class="notranslate">构造函数</code>：new Person()</li>
+<li>以<code class="notranslate">小驼峰式命名法</code>命名<code class="notranslate">函数和方法</code>：getFirstName()</li>
+<li>以<code class="notranslate">全大写字母</code>命名<code class="notranslate">常量</code>：var PI = 3.14</li>
+<li>以<code class="notranslate">_开头</code>命名<code class="notranslate">私有变量</code>：_getFirst: function(){...}</li>
+</ul>
+<p>还有另外一个完全大写的惯例：全局变量名字全部大写。全部大写命名全局变量可以加强减小全局变量数量的实践，同时让它们易于区分。</p>
+<h2>注释</h2>
+<p>你必须注释你的代码，即使不会有其他人向你一样接触它。通常，当你深入研究一个问题，你会很清楚的知道这个代码是干嘛用的，但是，当你一周之后再回来看的时候，想必也要耗掉不少脑细胞去搞明白到底怎么工作的。</p>
+<p>最重要的习惯，然而也是最难遵守的，就是保持注释的及时更新，因为过时的注释比没有注释更加的误导人。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://jinzhepro.github.io">JinzhePro</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/19/2024"!=""){
+    var startSite=new Date("12/19/2024");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","jinzhepro/jinzhepro.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://jinzhepro.github.io/plugins/lightbox.js'></script>
+
+</html>

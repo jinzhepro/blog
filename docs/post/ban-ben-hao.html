@@ -10,17 +10,33 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# 实体层
+<meta name="description" content="alpha：内部测试版本，测试或开发人员使用
 
-使用物理手段链接电脑，如光缆，wifi。">
-<meta property="og:title" content="111">
-<meta property="og:description" content="# 实体层
+beta：公测版本，消除了严重bug，还有新功能添加
 
-使用物理手段链接电脑，如光缆，wifi。">
+rc: 发行候选版本，主要是修改bug，不做功能改变
+
+release：发行版
+
+## 例如
+
+1<sup>（主版本）</sup>.2<sup>（次版本）</sup>.3<sup>（修订号）</sup>- alpha.1<sup>（内部测试版本号）</sup>-beta.1<sup>（公测版本号）</sup>-rc.1<sup>（发行候选版本）</sup>-release.1<sup>（发行版）</sup>+meta<sup>（元数据）</sup>。">
+<meta property="og:title" content="版本号">
+<meta property="og:description" content="alpha：内部测试版本，测试或开发人员使用
+
+beta：公测版本，消除了严重bug，还有新功能添加
+
+rc: 发行候选版本，主要是修改bug，不做功能改变
+
+release：发行版
+
+## 例如
+
+1<sup>（主版本）</sup>.2<sup>（次版本）</sup>.3<sup>（修订号）</sup>- alpha.1<sup>（内部测试版本号）</sup>-beta.1<sup>（公测版本号）</sup>-rc.1<sup>（发行候选版本）</sup>-release.1<sup>（发行版）</sup>+meta<sup>（元数据）</sup>。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://jinzhepro.github.io/post/111.html">
+<meta property="og:url" content="https://jinzhepro.github.io/post/ban-ben-hao.html">
 <meta property="og:image" content="https://jinzhepro.github.io/logo.png">
-<title>111</title>
+<title>版本号</title>
 
 
 
@@ -53,7 +69,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">111</h1>
+<h1 class="postTitle">版本号</h1>
 <div class="title-right">
     <a href="https://jinzhepro.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -61,7 +77,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/18" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -77,54 +93,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>实体层</h1>
-<p>使用物理手段链接电脑，如光缆，wifi。</p>
-<h1>链接层</h1>
-<p>规定了电信号的解读方式。</p>
-<ul>
-<li>
-<p>以太网协议</p>
-<p>以太网规定，一组电信号为一个数据包，也叫做<code class="notranslate">帧</code>，每一帧都分为<code class="notranslate">标头（head）</code>和<code class="notranslate">数据（data）</code>。标头包含了局书包的一些说明项，包括发送者、接受者、数据类型等。数据则是具体的发送内容。</p>
-</li>
-<li>
-<p>MAC地址</p>
-<p>MAC地址实际为数据包的的发送和接收地址，每一个网卡在出厂时都规定了一个唯一的MAC地址。</p>
-</li>
-<li>
-<p>ARP协议</p>
-<p>数据报文必须封装成帧才能通过链接层发送，帧必须包含对方的MAC地址，ARP协议可以通过解析对方的IP地址来获取MAC地址</p>
-</li>
-<li>
-<p>广播</p>
-<p>以太网是通过广播的方式向本网络的所有计算机发送数据帧，计算机自己判断是否为接收方。</p>
-</li>
-</ul>
-<h1>网络层</h1>
-<p>互联网是无数子网络共同组成的一个巨型网络，否则互联网将会收到每个人发送的包，那将会是灾难！</p>
-<ul>
-<li>
-<p>IP协议</p>
-<p>规定网络地址的协议。为每一台计算机分配IP地址，判断两台计算机是否处于同一个子网络</p>
-</li>
-<li>
-<p>子网掩码</p>
-<p>表示子网络特征的一个参数，网络部分和主机部分的解析方式。<br>
-IP地址172.16.254.1，如果已知网络部分是前24位，主机部分是后8位，那么子网络掩码就是11111111.11111111.11111111.00000000，写成十进制就是255.255.255.0。</p>
-</li>
-</ul>
-<h1>传输层</h1>
-<p>建立"端口到端口"的通信。每个应用只取自己所需特定端口的数据</p>
-<h2>UDP</h2>
-<p>比较简单，容易实现，但是缺点是可靠性较差，一旦数据包发出，无法知道对方是否收到</p>
-<h2>TCP</h2>
-<ul>
-<li>建立连接的三次握手<br>
-客户端发送ACK发起连接→→→服务端发送SYN+ACK确认连接→→→客户端发送ACK确认连接→→→连接成功</li>
-<li>断开连接的四次挥手<br>
-客户端发送FIN→→→服务端收到之后发送ACK确认→→→服务端发送FIN→→→客户端发送ACK确认→→→断开成功</li>
-</ul>
-<h1>应用层</h1>
-<p>规定应用程序的数据格式。最高的一层，直接面对用户。它的数据就放在TCP数据包的"数据"部分。</p></div>
+<div class="markdown-body" id="postBody"><p>alpha：内部测试版本，测试或开发人员使用</p>
+<p>beta：公测版本，消除了严重bug，还有新功能添加</p>
+<p>rc: 发行候选版本，主要是修改bug，不做功能改变</p>
+<p>release：发行版</p>
+<h2>例如</h2>
+<p>1<sup>（主版本）</sup>.2<sup>（次版本）</sup>.3<sup>（修订号）</sup>- alpha.1<sup>（内部测试版本号）</sup>-beta.1<sup>（公测版本号）</sup>-rc.1<sup>（发行候选版本）</sup>-release.1<sup>（发行版）</sup>+meta<sup>（元数据）</sup></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

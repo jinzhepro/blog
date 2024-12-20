@@ -10,17 +10,27 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# 实体层
+<meta name="description" content="V8是一个虚拟机，作为js的执行环境，它可以模拟cpu，堆栈，寄存器等
 
-使用物理手段链接电脑，如光缆，wifi。">
-<meta property="og:title" content="111">
-<meta property="og:description" content="# 实体层
+- 指令集（机器语言）： cpu只能识别的二进制指令如（1000100111011000）
+- 汇编指令集： 人类可识别记忆的符号（mov ax,bx）
 
-使用物理手段链接电脑，如光缆，wifi。">
+## 高级语言的处理
+
+- 解释执行（启动快，执行慢）：源代码通过解析器编译成字节码，然后使用解释器解释执行字节码直接输出结果。">
+<meta property="og:title" content="V8">
+<meta property="og:description" content="V8是一个虚拟机，作为js的执行环境，它可以模拟cpu，堆栈，寄存器等
+
+- 指令集（机器语言）： cpu只能识别的二进制指令如（1000100111011000）
+- 汇编指令集： 人类可识别记忆的符号（mov ax,bx）
+
+## 高级语言的处理
+
+- 解释执行（启动快，执行慢）：源代码通过解析器编译成字节码，然后使用解释器解释执行字节码直接输出结果。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://jinzhepro.github.io/post/111.html">
+<meta property="og:url" content="https://jinzhepro.github.io/post/V8.html">
 <meta property="og:image" content="https://jinzhepro.github.io/logo.png">
-<title>111</title>
+<title>V8</title>
 
 
 
@@ -53,7 +63,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">111</h1>
+<h1 class="postTitle">V8</h1>
 <div class="title-right">
     <a href="https://jinzhepro.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -61,7 +71,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/23" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -77,54 +87,42 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>实体层</h1>
-<p>使用物理手段链接电脑，如光缆，wifi。</p>
-<h1>链接层</h1>
-<p>规定了电信号的解读方式。</p>
+<div class="markdown-body" id="postBody"><p>V8是一个虚拟机，作为js的执行环境，它可以模拟cpu，堆栈，寄存器等</p>
 <ul>
-<li>
-<p>以太网协议</p>
-<p>以太网规定，一组电信号为一个数据包，也叫做<code class="notranslate">帧</code>，每一帧都分为<code class="notranslate">标头（head）</code>和<code class="notranslate">数据（data）</code>。标头包含了局书包的一些说明项，包括发送者、接受者、数据类型等。数据则是具体的发送内容。</p>
-</li>
-<li>
-<p>MAC地址</p>
-<p>MAC地址实际为数据包的的发送和接收地址，每一个网卡在出厂时都规定了一个唯一的MAC地址。</p>
-</li>
-<li>
-<p>ARP协议</p>
-<p>数据报文必须封装成帧才能通过链接层发送，帧必须包含对方的MAC地址，ARP协议可以通过解析对方的IP地址来获取MAC地址</p>
-</li>
-<li>
-<p>广播</p>
-<p>以太网是通过广播的方式向本网络的所有计算机发送数据帧，计算机自己判断是否为接收方。</p>
-</li>
+<li>指令集（机器语言）： cpu只能识别的二进制指令如（1000100111011000）</li>
+<li>汇编指令集： 人类可识别记忆的符号（mov ax,bx）</li>
 </ul>
-<h1>网络层</h1>
-<p>互联网是无数子网络共同组成的一个巨型网络，否则互联网将会收到每个人发送的包，那将会是灾难！</p>
+<h2>高级语言的处理</h2>
 <ul>
-<li>
-<p>IP协议</p>
-<p>规定网络地址的协议。为每一台计算机分配IP地址，判断两台计算机是否处于同一个子网络</p>
-</li>
-<li>
-<p>子网掩码</p>
-<p>表示子网络特征的一个参数，网络部分和主机部分的解析方式。<br>
-IP地址172.16.254.1，如果已知网络部分是前24位，主机部分是后8位，那么子网络掩码就是11111111.11111111.11111111.00000000，写成十进制就是255.255.255.0。</p>
-</li>
+<li>解释执行（启动快，执行慢）：源代码通过解析器编译成字节码，然后使用解释器解释执行字节码直接输出结果。</li>
 </ul>
-<h1>传输层</h1>
-<p>建立"端口到端口"的通信。每个应用只取自己所需特定端口的数据</p>
-<h2>UDP</h2>
-<p>比较简单，容易实现，但是缺点是可靠性较差，一旦数据包发出，无法知道对方是否收到</p>
-<h2>TCP</h2>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/fe2beaaf-bcb5-4810-9c32-5377f3ad94b9"><img src="https://github.com/user-attachments/assets/fe2beaaf-bcb5-4810-9c32-5377f3ad94b9" alt="233820555-2c654b4a-7c51-4ac1-a802-1b4e29df2bf9" style="max-width: 100%;"></a></p>
 <ul>
-<li>建立连接的三次握手<br>
-客户端发送ACK发起连接→→→服务端发送SYN+ACK确认连接→→→客户端发送ACK确认连接→→→连接成功</li>
-<li>断开连接的四次挥手<br>
-客户端发送FIN→→→服务端收到之后发送ACK确认→→→服务端发送FIN→→→客户端发送ACK确认→→→断开成功</li>
+<li>编译执行（启动慢，执行快）：源代码通过解析器编译成字节码，然后通过编译器编译为机器代码，机器代码可以通过内存或者文件的形式保存，然后直接执行二进制。</li>
 </ul>
-<h1>应用层</h1>
-<p>规定应用程序的数据格式。最高的一层，直接面对用户。它的数据就放在TCP数据包的"数据"部分。</p></div>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/60a96dd5-d61b-4b1b-8df8-44b10b69f9e8"><img src="https://github.com/user-attachments/assets/60a96dd5-d61b-4b1b-8df8-44b10b69f9e8" alt="233820562-3570cf51-2122-4517-acb4-fe4aead0e281" style="max-width: 100%;"></a></p>
+<h2>V8的处理</h2>
+<p>融合解释执行和编译执行（Just In Time）：准备执行环境→解析源码生成AST和作用域→生成字节码→解释字节码输出结果→监控热点代码→热点代码编译为机器码执行→反优化生成的机器码（抛弃当前优化的二进制代码，回退使用字节码解释执行）<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b08227c2-254b-430f-bbf2-2346061d73de"><img src="https://github.com/user-attachments/assets/b08227c2-254b-430f-bbf2-2346061d73de" alt="233820591-45b1bab6-2809-40f8-991a-182539c5dae0" style="max-width: 100%;"></a></p>
+<h2>字节码</h2>
+<p>V8早期并没有使用字节码，而是将JavaScript代码直接编译成机器码。为了提升性能，<strong>运行时将二进制存在内存中，并在浏览器退出时，缓存编译好的二进制到硬盘里</strong>。但是二进制实在是太大了，这种空间换时间的方法逐渐不可行，所以引入了字节码。</p>
+<ul>
+<li>缓存字节码要比二进制小很多，节省空间。</li>
+<li>适配CPU，统一处理</li>
+</ul>
+<h2>惰性解析</h2>
+<p>基于性能原因（速度慢，消耗内存），V8并不会一次性将所有的JavaScript代码全部解析为字节码。</p>
+<p>所有主流的 JavaScript 虚拟机都实现了惰性解析。所谓惰性解析，是指解析器在执行过程中，如遇到函数声明，那么会跳过函数内部代码，而仅仅生成顶层代码的AST和字节码。</p>
+<h3>特殊情况：闭包</h3>
+<p>虽然采取了惰性解析，不会解析和执行父级函数中的子级函数，但是 V8 还是需要判断子级函数是否引用了 foo 函数中的变量，因为在正常流程中父级函数执行完毕就要销毁，这是矛盾的。负责处理这一部分的模块叫预解析器。</p>
+<h2>预解析器</h2>
+<p>预解析器的作用一个是检查函数语法错误，另一个就是检查函数内部是否引用外部变量，如果引用了，预解析器会将栈中的变量移至堆中，使用时直接使用堆中的引用。</p>
+<h3>隐藏类</h3>
+<p>V8为每个对象创建了一个隐藏类，该隐藏类保存了属性的偏移值，拿到偏移值究竟可以直接去内存中获取值。但是如果在这基础上添加或删除属性，V8会重建隐藏类。</p>
+<h2>async/await</h2>
+<p>async/await就是 Promise 和生成器应用，往底层说，就是微任务和协程应用。</p>
+<h3>协程</h3>
+<p>一个比线程颗粒度更小的任务进程，他跑在线程上，一个线程可以有多个协程，但是最多只可可以同时跑一个协程。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
