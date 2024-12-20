@@ -15,5 +15,5 @@
   "singlePage":["about"],
   "allHead":"<script src='https://jinzhepro.github.io/plugins/GmeekVercount.js'></script><script src='https://jinzhepro.github.io/plugins/GmeekTOC.js'></script>",
   "primerCSS":"<link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />",
-  "script":"<script src='https://jinzhepro.github.io/plugins/lightbox.js'></script>"
+  "script":"<script src='https://jinzhepro.github.io/plugins/lightbox.js'></script><script src='https://jinzhepro.github.io/plugins/mermaid.js'></script>"
 }
