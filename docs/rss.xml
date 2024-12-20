@@ -1,5 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://jinzhepro.github.io</link><description>再努力一次！</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://jinzhepro.github.io/logo.png</url><title>avatar</title><link>https://jinzhepro.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 03:16:53 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>正则的汉字匹配问题</title><link>https://jinzhepro.github.io/post/zheng-ze-de-han-zi-pi-pei-wen-ti.html</link><description>## /[U+4E00–U+9FA5]/&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://jinzhepro.github.io</link><description>再努力一次！</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://jinzhepro.github.io/logo.png</url><title>avatar</title><link>https://jinzhepro.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 03:17:49 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>webApp本地真机调试</title><link>https://jinzhepro.github.io/post/webApp-ben-di-zhen-ji-diao-shi.html</link><description>一般我们开发webApp习惯用chrome控制台自带的手机模拟器，这没什么不好的，只不过在调试某些功能是会受限制：&#13;
+&#13;
+- chrome并不能完成完美的调用摄像头，调用录音等原生功能&#13;
+- chrome有时不能完美的演示手机样式问题&#13;
+&#13;
+所以就有了本地真机调试的想法，在网上大概搜了一下，结合自己的实践整理出来&#13;
+&#13;
+**必需:**&#13;
+&#13;
+1. 装有桌面版chrome的Android手机&#13;
+2. 装有chrome的PC&#13;
+&#13;
+**步骤：**&#13;
+&#13;
+1. 手机连接电脑打开并同意usb调试。</description><guid isPermaLink="true">https://jinzhepro.github.io/post/webApp-ben-di-zhen-ji-diao-shi.html</guid><pubDate>Fri, 20 Dec 2024 03:17:22 +0000</pubDate></item><item><title>正则的汉字匹配问题</title><link>https://jinzhepro.github.io/post/zheng-ze-de-han-zi-pi-pei-wen-ti.html</link><description>## /[U+4E00–U+9FA5]/&#13;
 &#13;
 这是我们平时最常用的汉字匹配正则表达式，Unicode1.0收录了U+4E00–U+9FA5范围内的文字，共计20902个汉字，但问题是这是1993年发布的，至今已经过去将近30年时间，这中间也已经加入了相当多的汉字。</description><guid isPermaLink="true">https://jinzhepro.github.io/post/zheng-ze-de-han-zi-pi-pei-wen-ti.html</guid><pubDate>Fri, 20 Dec 2024 03:16:29 +0000</pubDate></item><item><title>DNS是如何工作的</title><link>https://jinzhepro.github.io/post/DNS-shi-ru-he-gong-zuo-de.html</link><description>## DNS查询路线&#13;
 &#13;
