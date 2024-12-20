@@ -2,15 +2,15 @@ function createTOC() {
     var tocElement = document.createElement('div');
     tocElement.className = 'toc';
     var contentContainer = document.getElementById('content');
-    
+
     const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    
+
     if (headings.length === 0) {
         return;  // 如果没有标题元素，则不创建TOC
     }
-    
+
     tocElement.insertAdjacentHTML('afterbegin', '<div class="toc-title">文章目录</div>');
-    
+
     headings.forEach(heading => {
         if (!heading.id) {
             heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
@@ -22,8 +22,8 @@ function createTOC() {
         link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
         tocElement.appendChild(link);
     });
-    
-    tocElement.insertAdjacentHTML('beforeend', '<a class="toc-end" onclick="window.scrollTo({top:0,behavior: \'smooth\'});">Top</a>');
+
+    tocElement.insertAdjacentHTML('beforeend', '<a class="toc-end" onclick="window.scrollTo({top:0,behavior: \'smooth\'});">回到顶部</a>');
     contentContainer.prepend(tocElement);
 }
 
