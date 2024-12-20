@@ -23,7 +23,7 @@ function createTOC() {
         tocElement.appendChild(link);
     });
 
-    tocElement.insertAdjacentHTML('beforeend', '<a class="toc-end" onclick="window.scrollTo({top:0,behavior: \'smooth\'});">回到顶部</a>');
+    tocElement.insertAdjacentHTML('beforeend', '<a class="toc-end" onclick="window.scrollTo({top:0,behavior: \'smooth\'});">↑</a>');
     contentContainer.prepend(tocElement);
 }
 
