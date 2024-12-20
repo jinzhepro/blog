@@ -1,5 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://jinzhepro.github.io</link><description>再努力一次！</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://jinzhepro.github.io/logo.png</url><title>avatar</title><link>https://jinzhepro.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 03:10:02 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>链表</title><link>https://jinzhepro.github.io/post/lian-biao.html</link><description>线性结构，内存不连续&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://jinzhepro.github.io</link><description>再努力一次！</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://jinzhepro.github.io/logo.png</url><title>avatar</title><link>https://jinzhepro.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 03:11:41 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>V8</title><link>https://jinzhepro.github.io/post/V8.html</link><description>V8是一个虚拟机，作为js的执行环境，它可以模拟cpu，堆栈，寄存器等&#13;
+&#13;
+- 指令集（机器语言）： cpu只能识别的二进制指令如（1000100111011000）&#13;
+- 汇编指令集： 人类可识别记忆的符号（mov ax,bx）&#13;
+&#13;
+## 高级语言的处理&#13;
+&#13;
+- 解释执行（启动快，执行慢）：源代码通过解析器编译成字节码，然后使用解释器解释执行字节码直接输出结果。</description><guid isPermaLink="true">https://jinzhepro.github.io/post/V8.html</guid><pubDate>Fri, 20 Dec 2024 03:11:15 +0000</pubDate></item><item><title>链表</title><link>https://jinzhepro.github.io/post/lian-biao.html</link><description>线性结构，内存不连续&#13;
 &#13;
 ## 单链表&#13;
 ![232941876-3febd2b0-c227-4bbf-863f-9b60044c2dba](https://github.com/user-attachments/assets/7c5e8d16-4723-4afb-ba50-291f79d08573)&#13;
