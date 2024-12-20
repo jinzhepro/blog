@@ -1,5 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://jinzhepro.github.io</link><description>再努力一次！</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://jinzhepro.github.io/logo.png</url><title>avatar</title><link>https://jinzhepro.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 03:15:50 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>浏览器渲染逻辑</title><link>https://jinzhepro.github.io/post/liu-lan-qi-xuan-ran-luo-ji.html</link><description>&gt; 解析没有defer或async属性的js时会阻塞DOM的解析&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>JinzhePro</title><link>https://jinzhepro.github.io</link><description>再努力一次！</description><copyright>JinzhePro</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://jinzhepro.github.io/logo.png</url><title>avatar</title><link>https://jinzhepro.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 03:16:13 +0000</lastBuildDate><managingEditor>JinzhePro</managingEditor><ttl>60</ttl><webMaster>JinzhePro</webMaster><item><title>DNS是如何工作的</title><link>https://jinzhepro.github.io/post/DNS-shi-ru-he-gong-zuo-de.html</link><description>## DNS查询路线&#13;
+&#13;
+```mermaid&#13;
+sequenceDiagram&#13;
+    participant A as 用户&#13;
+    participant B as 浏览器&#13;
+    participant C as DNS根域名服务器&#13;
+    participant D as 顶级域名服务器&#13;
+    participant E as 域名服务器&#13;
+    A -&gt;&gt; B: 输入网址&#13;
+    B -&gt;&gt; C: 无缓存查询&#13;
+    note right of B: 查找TLD需要先查找根域名服务器&#13;
+    B --&gt;&gt; A: 缓存返回&#13;
+    C -&gt;&gt; D: 查询&#13;
+    D -&gt;&gt; E: 查询注册商&#13;
+    E -&gt;&gt; B: 返回IP地址并缓存&#13;
+    B -&gt;&gt; A: 返回请求的资源&#13;
+&#13;
+```&#13;
+&#13;
+## DNS动画讲解&#13;
+&#13;
+https://www.youtube.com/watch?v=3eqEl6scOvw&amp;ab_channel=DNSimple。</description><guid isPermaLink="true">https://jinzhepro.github.io/post/DNS-shi-ru-he-gong-zuo-de.html</guid><pubDate>Fri, 20 Dec 2024 03:15:53 +0000</pubDate></item><item><title>浏览器渲染逻辑</title><link>https://jinzhepro.github.io/post/liu-lan-qi-xuan-ran-luo-ji.html</link><description>&gt; 解析没有defer或async属性的js时会阻塞DOM的解析&#13;
 &gt; &#13;
 &#13;
 ```mermaid&#13;
