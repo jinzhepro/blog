@@ -10,53 +10,61 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="## Completion Record 标准类型
-
-1. [[type]]：完成的类型（break、continue、return、throw、normal）
-2. [[value]] ：返回值（如果没有，则为empty）
-3. [[target]] ：语句的目标
+<meta name="description" content="表达式的最小单位，优先级最高
 
 ```jsx
-{
-  var a = 1; // normal, undefined, empty
-  return 2; // return, 2, empty
-  a++;
-  console.log(a);
-} // return, 2, empty
-// 带有target的语句
-outer: while (true) {
-  inner: while (true) {
-    break outer;
-  }
-}
-console.log('finished');
-```。">
-<meta property="og:title" content="语句的执行">
-<meta property="og:description" content="## Completion Record 标准类型
+'zhang';
+123;
+null;
+true;
+false({})(function () {});
+```
 
-1. [[type]]：完成的类型（break、continue、return、throw、normal）
-2. [[value]] ：返回值（如果没有，则为empty）
-3. [[target]] ：语句的目标
+## Member Expression 成员表达式
+
+访问对象的成员，为了属性的访问
 
 ```jsx
-{
-  var a = 1; // normal, undefined, empty
-  return 2; // return, 2, empty
-  a++;
-  console.log(a);
-} // return, 2, empty
-// 带有target的语句
-outer: while (true) {
-  inner: while (true) {
-    break outer;
-  }
-}
-console.log('finished');
-```。">
+a().b
+a['b']
+
+f`a${b}c`
+new class() // 带有参数的new运算
+```
+
+## New Expression NEW表达式
+
+这里着的是没有参数列表的表达式。">
+<meta property="og:title" content="表达式">
+<meta property="og:description" content="表达式的最小单位，优先级最高
+
+```jsx
+'zhang';
+123;
+null;
+true;
+false({})(function () {});
+```
+
+## Member Expression 成员表达式
+
+访问对象的成员，为了属性的访问
+
+```jsx
+a().b
+a['b']
+
+f`a${b}c`
+new class() // 带有参数的new运算
+```
+
+## New Expression NEW表达式
+
+这里着的是没有参数列表的表达式。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://jinzhepro.github.io/post/yu-ju-de-zhi-xing.html">
+<meta property="og:url" content="https://jinzhepro.github.io/post/biao-da-shi.html">
 <meta property="og:image" content="https://jinzhepro.github.io/logo.png">
-<title>语句的执行</title>
+<title>表达式</title>
 <link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 
@@ -99,7 +107,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">语句的执行</h1>
+<h1 class="postTitle">表达式</h1>
 <div class="title-right">
     <a href="https://jinzhepro.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -107,7 +115,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/12" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/jinzhepro/jinzhepro.github.io/issues/32" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -123,25 +131,39 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h2>Completion Record 标准类型</h2>
-<ol>
-<li>[[type]]：完成的类型（break、continue、return、throw、normal）</li>
-<li>[[value]] ：返回值（如果没有，则为empty）</li>
-<li>[[target]] ：语句的目标</li>
-</ol>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-kos">{</span>
-  <span class="pl-k">var</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span><span class="pl-kos">;</span> <span class="pl-c">// normal, undefined, empty</span>
-  <span class="pl-k">return</span> <span class="pl-c1">2</span><span class="pl-kos">;</span> <span class="pl-c">// return, 2, empty</span>
-  <span class="pl-s1">a</span><span class="pl-c1">++</span><span class="pl-kos">;</span>
-  <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">a</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-<span class="pl-kos">}</span> <span class="pl-c">// return, 2, empty</span>
-<span class="pl-c">// 带有target的语句</span>
-outer: <span class="pl-k">while</span> <span class="pl-kos">(</span><span class="pl-c1">true</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-  inner: <span class="pl-k">while</span> <span class="pl-kos">(</span><span class="pl-c1">true</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-    <span class="pl-k">break</span> outer<span class="pl-kos">;</span>
-  <span class="pl-kos">}</span>
-<span class="pl-kos">}</span>
-<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s">"finished"</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div></div>
+<div class="markdown-body" id="postBody"><p>表达式的最小单位，优先级最高</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-s">"zhang"</span><span class="pl-kos">;</span>
+<span class="pl-c1">123</span><span class="pl-kos">;</span>
+<span class="pl-c1">null</span><span class="pl-kos">;</span>
+<span class="pl-c1">true</span><span class="pl-kos">;</span>
+<span class="pl-c1">false</span><span class="pl-kos">(</span><span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">(</span><span class="pl-k">function</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<h2>Member Expression 成员表达式</h2>
+<p>访问对象的成员，为了属性的访问</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-en">a</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-c1">b</span>
+<span class="pl-s1">a</span><span class="pl-kos">[</span><span class="pl-s">'b'</span><span class="pl-kos">]</span>
+
+<span class="pl-en">f</span><span class="pl-s">`a<span class="pl-s1"><span class="pl-kos">${</span><span class="pl-s1">b</span><span class="pl-kos">}</span></span>c`</span>
+<span class="pl-k">new</span> <span class="pl-k">class</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c">// 带有参数的new运算</span></pre></div>
+<h2>New Expression NEW表达式</h2>
+<p>这里着的是没有参数列表的表达式。</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">new</span> <span class="pl-k">new</span> <span class="pl-s1">calss</span><span class="pl-kos">(</span><span class="pl-c1">1</span><span class="pl-kos">)</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-c">// 等于 new (new class(1))</span></pre></div>
+<h2>Call Expression 函数调用表达式</h2>
+<p>Member Expression 中的某一子结构具有函数调用的功能</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-en">a</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-c1">c</span><span class="pl-kos">[</span><span class="pl-s">"2"</span><span class="pl-kos">]</span><span class="pl-kos">;</span>
+<span class="pl-en">c</span><span class="pl-kos">(</span><span class="pl-c1">1</span><span class="pl-kos">)</span><span class="pl-kos">(</span><span class="pl-c1">2</span><span class="pl-kos">)</span><span class="pl-kos">(</span><span class="pl-c1">3</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<h2>LeftHandSide Expression 左值表达式</h2>
+<p>一般多见为Call Expression</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-en">a</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-c1">b</span> <span class="pl-c1">=</span> <span class="pl-s1">c</span><span class="pl-kos">;</span></pre></div>
+<h2>Assignment Expression 赋值表达式</h2>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-s1">b</span><span class="pl-kos">;</span>
+
+<span class="pl-c">// 可嵌套的赋值表达式</span>
+<span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-s1">c</span> <span class="pl-c1">=</span> <span class="pl-s1">d</span><span class="pl-kos">;</span> <span class="pl-c">// 等于a = (b = (c = d))</span></pre></div>
+<h2>Expression 表达式</h2>
+<p>逗号运算符取得是最后一个值</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-kos">(</span><span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span><span class="pl-kos">)</span><span class="pl-kos">,</span> <span class="pl-kos">(</span><span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-c1">2</span><span class="pl-kos">)</span><span class="pl-kos">,</span> <span class="pl-c1">null</span><span class="pl-kos">;</span> <span class="pl-c">// null</span></pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
